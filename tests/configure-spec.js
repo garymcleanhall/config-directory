@@ -8,29 +8,8 @@ const exampleConfigDirectory = './tests/fixtures'
 
 describe('config directory reader', () => {
 
-  it('reads all configs from directory', () => {
-
-    const config = configure(null, exampleConfigDirectory)
-
-    const expected = {
-      env1: {
-        data: {
-          record: {
-            uri: 'xyz'
-          }
-        },
-        service: {
-          port: 3000
-        }
-      }, 
-      env2: {}
-    }
-
-    expect(config).toEqual(expected)
-  })
-
   it('returns only requested environment config', () => {
-    const config = configure('env1', exampleConfigDirectory)
+    const config = configure(exampleConfigDirectory, 'env1')
 
     const env1 = {
       data: {
@@ -48,8 +27,28 @@ describe('config directory reader', () => {
 
   it('throws if trying to access environment that does not exist', () => {
     
-    expect(() => configure('env3', exampleConfigDirectory))
+    expect(() => configure(exampleConfigDirectory, 'env3'))
       .toThrow(jasmine.stringMatching(/env3/))
+  })
+
+  it('allows partial application', () => {
+
+    const config = configure(exampleConfigDirectory)
+
+    const expected = {
+      data: {
+        record: {
+          uri: 'xyz'
+        }
+      },
+      service: {
+        port: 3000
+      }
+    }
+
+    expect(config).toEqual(jasmine.any(Function))
+    expect(config('env1')).toEqual(expected)
+    expect(config('env2')).toEqual({})
   })
 
 })

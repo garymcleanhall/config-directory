@@ -4,7 +4,7 @@ const
   path = require('path'),
   fs = require('fs')
 
-module.exports = (environment, configDirectory = __dirname) => {   
+module.exports = (configDirectory, environment) => {   
 
   const fullConfig = _crawlConfigDirectory(configDirectory)
 
@@ -15,7 +15,7 @@ module.exports = (environment, configDirectory = __dirname) => {
       throw `Environment was not found: ${environment}`
     }
   } else {
-    return fullConfig
+    return (env) => (fullConfig[env])
   }
 
   function _crawlConfigDirectory(directory) {
