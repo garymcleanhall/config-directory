@@ -1,0 +1,31 @@
+{
+  "name": "config-directory",
+  "version": "0.1.0",
+  "description": "Reads all configuration data from a directory tree and forms a config object",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine ./tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/garymcleanhall/config-directory.git"
+  },
+  "keywords": [
+    "config",
+    "configuration",
+    "directory",
+    "json",
+    "data",
+    "environment",
+    "env"
+  ],
+  "author": "Gary McLean Hall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garymcleanhall/config-directory/issues"
+  },
+  "homepage": "https://github.com/garymcleanhall/config-directory#readme",
+  "dependencies": {
+    "jasmine": "^2.6.0"
+  }
+}
