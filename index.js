@@ -24,11 +24,16 @@ module.exports = (environment, configDirectory = __dirname) => {
       const fileStat = fs.lstatSync(currentPath)
       if(fileStat.isDirectory()) {
         accumulator[current] = _crawlConfigDirectory(currentPath)
-      } else if (fileStat.isFile()) {
+      } else if (fileStat.isFile() && _isJsonFile(current)) {
         const propertyName = path.basename(current, path.extname(current))
-        accumulator[propertyName] = require(currentPath)
+        const content = fs.readFileSync(currentPath).toString()
+        accumulator[propertyName] = JSON.parse(content)
       }
       return accumulator
     }, {})
+  }
+
+  function _isJsonFile(filePath) {
+    return path.extname(filePath) === '.json'
   }
 }

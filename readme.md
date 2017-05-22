@@ -47,7 +47,7 @@ The following call:
 ```
 const configDirectory = require('config-directory')
 
-const config = configDirectory('./config/', process.env.NODE_ENV)
+const config = configDirectory(process.env.NODE_ENV, './config/')
 ```
 
 When run with `NODE_ENV=dev`, will set `config` to:

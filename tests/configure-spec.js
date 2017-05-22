@@ -4,7 +4,7 @@ const
   path = require('path'),
   configure = require('../')
 
-const exampleConfigDirectory = path.join(process.cwd(), '/tests/fixtures')
+const exampleConfigDirectory = './tests/fixtures'
 
 describe('config directory reader', () => {
 
